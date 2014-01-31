@@ -1,0 +1,128 @@
+<?php
+                
+//0.11 sec
+                
+require __DIR__ . '/../vendor/autoload.php';    
+    
+   
+use AppShed\Style\Color as Color;
+use AppShed\Element\App as App;
+use AppShed\Element\Tab as Tab;
+use AppShed\Element\Screen\Screen as ScreenScreen;
+use AppShed\Element\Item\HTML as HTML;
+use AppShed\Element\Item\Button as Button;
+use AppShed\Element\Item\Text as Text;
+use AppShed\Element\Item\Toggle as Toggle;
+use AppShed\Element\Item\Input as Input;
+
+           
+class AppshedSource {
+             
+
+private function getItem2149162(){
+ $item = new HTML("This is an app to show students what they are doing in their Enrichment Activity.\nRemains Intellectual Property of DTP.");
+
+ return $item;
+} 
+
+private function getItem2149164(){
+ $item = new Button("Click to Begin...");
+ $item->setTabLink($this->getTab533843());
+
+ return $item;
+} 
+
+private function getItem2149177(){
+ $item = new Text("This Enrichment will focus on App Development using a system called AppShed. This system developed this app.\n\nTo start, you are going to get login details to this site.");
+
+ return $item;
+} 
+
+private function getItem2149181(){
+ $item = new Toggle(switch);
+
+ return $item;
+} 
+
+private function getItem2149182(){
+ $item = new Input("name", "My Name is...", "Type Name");
+
+ return $item;
+} 
+
+private function getItem2149184(){
+ $item = new Button("Next Stage");
+
+ return $item;
+} 
+             
+
+private function getTab533833(){
+ $tab = new Tab("Home" ,new AppShed\Style\Image("http://appshed.com/components/com_appbuilder/data/images/4tab_x2.png") );
+ $tab->setScreenLink($this->getScreen1336832());
+
+ return $tab;
+}
+
+
+private function getTab533843(){
+ $tab = new Tab("Start" ,new AppShed\Style\Image("http://appshed.com/components/com_appbuilder/data/images/4tab_x2.png") );
+ $tab->setScreenLink($this->getScreen1336848());
+
+ return $tab;
+}
+
+
+private function getScreen1336832(){
+ if(isset($this->screen1336832)) return $this->screen1336832 ;
+
+ $screen =  new ScreenScreen("Welcome");
+
+ $this->screen1336832 = $screen;
+
+ $screen->addChild($this->getItem2149162());
+ $screen->addChild($this->getItem2149164());
+ return $screen;
+
+}
+
+private function getScreen1336848(){
+ if(isset($this->screen1336848)) return $this->screen1336848 ;
+
+ $screen =  new ScreenScreen("Content of This Enrichment");
+ $screen->setHeaderColor(new Color("255,60,60"));
+ $screen->setHeaderTextColor(new Color("255,255,255"));
+
+ $this->screen1336848 = $screen;
+
+ $screen->addChild($this->getItem2149177());
+ $screen->addChild($this->getItem2149181());
+ $screen->addChild($this->getItem2149182());
+ $screen->addChild($this->getItem2149184());
+ return $screen;
+
+}
+
+public function getSource(){ 
+ $app = new App("Enrichment @ Kings 2014"); 
+
+
+ $app->addChild($this->getTab533833());
+ $app->addChild($this->getTab533843());
+
+ return $app;
+
+}
+
+       
+}
+       
+
+ $src = new AppshedSource();
+                
+                
+$remote = new AppShed\HTML\Remote($src->getSource());
+$remote->getResponse();                
+
+                
+   
